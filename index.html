@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For Ishu ❤️</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        :root {
+            --pink: #ff4f91;
+            --light-pink: #ffb6d0;
+            --purple: #a65cff;
+            --white: #fff8fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #52194f, #170d2b 65%, #10091e);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        #hearts {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            animation: floatUp linear forwards;
+            opacity: 0;
+            filter: drop-shadow(0 0 8px #ff4f91);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(.6);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .85;
+            }
+
+            85% {
+                opacity: .7;
+            }
+
+            100% {
+                transform: translateY(-115vh) rotate(35deg) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        .screen {
+            display: none;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            width: 100%;
+            padding: 35px 20px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            animation: appear .8s ease;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .small-label {
+            color: #ffb6d0;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 7vw, 65px);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(25px, 5vw, 38px);
+            margin-bottom: 20px;
+        }
+
+        .script {
+            font-family: 'Dancing Script', cursive;
+            color: #ff8fba;
+        }
+
+        .description {
+            max-width: 520px;
+            line-height: 1.9;
+            font-size: 15px;
+            color: #f8ddeb;
+            margin-bottom: 28px;
+        }
+
+        .glow-heart {
+            border: none;
+            background: transparent;
+            color: #ff5b9b;
+            font-size: 110px;
+            cursor: pointer;
+            line-height: 1.3;
+            filter: drop-shadow(0 0 18px #ff4f91);
+            animation: heartbeat 1.5s infinite;
+            transition: transform .3s;
+        }
+
+        .glow-heart:hover {
+            transform: scale(1.12);
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.13);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.09);
+            }
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            padding: 14px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: .3s;
+            font-weight: 500;
+            font-size: 14px;
+            margin: 6px;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #ff4f91, #d82d8b);
+            border: 1px solid #ffb6d0;
+            color: white;
+            box-shadow: 0 0 25px #ff4f9145;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px #ff4f9180;
+        }
+
+        .secondary-btn {
+            color: #ffe1ed;
+            border: 1px solid #ff9fca80;
+            background: #ffffff0a;
+        }
+
+        .secondary-btn:hover {
+            background: #ffffff15;
+        }
+
+        .hint {
+            margin-top: 24px;
+            font-size: 12px;
+            color: #e9bcd7;
+        }
+
+        .heart-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 75px);
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+        .pick-heart {
+            border: none;
+            background: transparent;
+            font-size: 52px;
+            cursor: pointer;
+            filter: drop-shadow(0 0 9px #ff4f9140);
+            transition: .3s;
+        }
+
+        .pick-heart:hover {
+            transform: scale(1.3) rotate(-8deg);
+            filter: drop-shadow(0 0 15px #ff4f91);
+        }
+
+        .letter {
+            width: 100%;
+            max-width: 590px;
+            padding: 35px 28px;
+            background: linear-gradient(145deg, #fff3f7, #ffe0ed);
+            color: #71304e;
+            border-radius: 5px 5px 18px 18px;
+            box-shadow: 0 15px 50px #0005;
+            text-align: left;
+            position: relative;
+            transform-origin: top center;
+            animation: letterOpen .9s ease;
+        }
+
+        @keyframes letterOpen {
+            from {
+                opacity: 0;
+                transform: perspective(800px) rotateX(-12deg) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: perspective(800px) rotateX(0) translateY(0);
+            }
+        }
+
+        .letter h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #d93679;
+            font-size: 35px;
+        }
+
+        .letter p {
+            font-size: 14px;
+            line-height: 2;
+            margin: 15px 0;
+        }
+
+        .letter .signature {
+            font-family: 'Dancing Script', cursive;
+            color: #d93679;
+            font-size: 25px;
+            text-align: right;
+        }
+
+        .letter .proposal-line {
+            font-weight: 600;
+            color: #c72568;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .choice-box {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .choice-box button {
+            display: block;
+            width: 100%;
+            margin: 14px 0;
+        }
+
+        .final-heart {
+            font-size: 100px;
+            animation: heartbeat 1.5s infinite;
+            filter: drop-shadow(0 0 20px #ff4f91);
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            color: #d9b7d5;
+            font-size: 12px;
+        }
+
+        @media (max-width: 500px) {
+            .screen {
+                padding: 25px 17px;
+            }
+
+            .letter {
+                padding: 25px 20px;
+            }
+
+            .letter p {
+                font-size: 13px;
+            }
+
+            .heart-grid {
+                grid-template-columns: repeat(3, 65px);
+                gap: 12px;
+            }
+
+            .pick-heart {
+                font-size: 44px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="hearts" aria-hidden="true"></div>
+
+    <!-- SCREEN 1 -->
+    <section class="screen active" id="screen1">
+        <div class="small-label">A little surprise for you</div>
+
+        <h1 class="script">Hey, Ishu... 💗</h1>
+
+        <p class="description">
+            Someone has something special for you.<br>
+            Something that comes straight from the heart.
+        </p>
+
+        <button class="glow-heart" onclick="goTo(2)" aria-label="Open your surprise">♥</button>
+
+        <button class="primary-btn" onclick="goTo(2)">
+            Tap My Heart 💌
+        </button>
+
+        <div class="hint">Made with a little courage and a lot of feelings ♡</div>
+    </section>
+
+    <!-- SCREEN 2 -->
+    <section class="screen" id="screen2">
+        <div class="small-label">Just for you</div>
+
+        <h1 class="script">One little thing...</h1>
+
+        <p class="description">
+            Some people leave a mark on your heart
+            that time can never completely erase.
+            <br><br>
+            And sometimes, life gives us another chance
+            to say what we couldn't say before. ❤️
+        </p>
+
+        <button class="primary-btn" onclick="goTo(3)">
+            Continue, Ishu 💗
+        </button>
+    </section>
+
+    <!-- SCREEN 3 -->
+    <section class="screen" id="screen3">
+        <div class="small-label">A little heart game</div>
+
+        <h2>Choose a heart, Ishu 💕</h2>
+
+        <p class="description">
+            Follow your heart. One of these has a little message for you.
+        </p>
+
+        <div class="heart-grid">
+            <button class="pick-heart" onclick="chooseHeart(this)" aria-label="Choose pink heart">💗</button>
+            <button class="pick-heart" onclick="chooseHeart(this)" aria-label="Choose red heart">❤️</button>
+            <button class="pick-heart" onclick="chooseHeart(this)" aria-label="Choose purple heart">💜</button>
+            <button class="pick-heart" onclick="chooseHeart(this)" aria-label="Choose sparkling heart">💖</button>
+            <button class="pick-heart" onclick="chooseHeart(this)" aria-label="Choose growing heart">💓</button>
+            <button class="pick-heart" onclick="chooseHeart(this)" aria-label="Choose beating heart">💕</button>
+        </div>
+
+        <p class="hint" id="heartHint">Every heart has a little magic ✨</p>
+    </section>
+
+    <!-- SCREEN 4 -->
+    <section class="screen" id="screen4">
+        <div class="small-label">A letter from my heart</div>
+
+        <h1 class="script">For you, Ishu 💌</h1>
+
+        <p class="description">
+            I have a few things I've wanted to tell you.
+            Take your time and read them. ❤️
+        </p>
+
+        <button class="primary-btn" onclick="goTo(5)">
+            Open Your Letter 💗
+        </button>
+    </section>
+
+    <!-- SCREEN 5 -->
+    <section class="screen" id="screen5">
+        <div class="letter">
+            <h2>Hey, Ishu... ❤️</h2>
+
+            <p>
+                Pata nahi tumhare wapas aane se meri life mein
+                kya badlega, par tumhe dobara dekhkar dil mein
+                kuch special zaroor feel hua.
+            </p>
+
+            <p>
+                Shayad kuch feelings kabhi poori tarah khatam
+                nahi hoti. Kuch yaadein, kuch baatein aur kuch
+                log dil mein ek alag jagah rakhte hain.
+            </p>
+
+            <p>
+                Main ye nahi kehta ki sab kuch pehle jaisa ho
+                jayega. Main bas itna chahta hoon ki agar tum bhi
+                chaaho, toh hum ek baar phir ek khoobsurat
+                shuruaat karne ki koshish karein.
+            </p>
+
+            <p>
+                Main tumhari feelings ki respect karta hoon.
+                Koi pressure nahi hai. Bas aaj apne dil ki baat
+                tum tak pahunchana chahta tha.
+            </p>
+
+            <p class="proposal-line">
+                Will you give us another chance? 🥹❤️
+            </p>
+
+            <p class="signature">
+                Someone jiske liye tum aaj bhi special ho. 💗
+            </p>
+        </div>
+
+        <button class="primary-btn" onclick="goTo(6)">
+            There's One More Thing... 💌
+        </button>
+    </section>
+
+    <!-- SCREEN 6 -->
+    <section class="screen" id="screen6">
+        <div class="small-label">From the bottom of my heart</div>
+
+        <h1 class="script">What do you say, Ishu? ❤️</h1>
+
+        <p class="description">
+            No perfect words can explain every feeling.
+            I just wanted to be honest with you.
+        </p>
+
+        <div class="choice-box">
+            <button class="primary-btn" onclick="goTo(7)">
+                ❤️ Yes, Let's Try Again!
+            </button>
+
+            <button class="secondary-btn" onclick="goTo(8)">
+                💌 Let Me Think
+            </button>
+        </div>
+
+        <div class="footer-note">
+            Whatever you choose, your feelings matter to me. ♡
+        </div>
+    </section>
+
+    <!-- SCREEN 7: YES -->
+    <section class="screen" id="screen7">
+        <div class="final-heart">💖</div>
+
+        <h1 class="script">A New Beginning...</h1>
+
+        <p class="description">
+            Ishu, thank you for being open to another chance. ❤️
+            <br><br>
+            I can't promise that every day will be perfect,
+            but I can promise to be honest, listen to you,
+            respect your feelings, and put effort into us.
+            <br><br>
+            Let's take things slowly and make new memories,
+            one beautiful moment at a time. 🥹
+        </p>
+
+        <h2 class="script">Together, if we both choose it. ♡</h2>
+
+        <button class="secondary-btn" onclick="goTo(9)">
+            One Last Little Message 💌
+        </button>
+    </section>
+
+    <!-- SCREEN 8: THINK -->
+    <section class="screen" id="screen8">
+        <div class="final-heart">🌙</div>
+
+        <h1 class="script">That's Okay, Ishu. ❤️</h1>
+
+        <p class="description">
+            Take all the time you need.
+            You don't have to decide anything right now.
+            <br><br>
+            I wanted to share my feelings with you,
+            not put pressure on you.
+            <br><br>
+            Whatever you decide, I'll respect it.
+            Thank you for hearing me out. 💗
+        </p>
+
+        <button class="secondary-btn" onclick="goTo(9)">
+            One Last Little Message 💌
+        </button>
+    </section>
+
+    <!-- SCREEN 9 -->
+    <section class="screen" id="screen9">
+        <div class="small-label">One last thing...</div>
+
+        <h1 class="script">Ishu, you matter. 💗</h1>
+
+        <p class="description">
+            Chahe humari story aage jo bhi mod le,
+            I'm glad I got the chance to tell you
+            what was in my heart.
+            <br><br>
+            Thank you for being a beautiful part
+            of my memories.
+        </p>
+
+        <div class="final-heart">❤️</div>
+
+        <h2 class="script">With all my heart.</h2>
+
+        <button class="secondary-btn" onclick="restart()">
+            Read It Again ↻
+        </button>
+    </section>
+
+    <script>
+        "use strict";
+
+        const totalScreens = 9;
+
+        function goTo(number) {
+            if (!Number.isInteger(number) || number < 1 || number > totalScreens) {
+                return;
+            }
+
+            document.querySelectorAll(".screen").forEach(function (screen) {
+                screen.classList.remove("active");
+            });
+
+            const nextScreen = document.getElementById("screen" + number);
+
+            if (nextScreen) {
+                nextScreen.classList.add("active");
+                window.scrollTo({top: 0, behavior: "smooth"});
+            }
+
+            if (number === 7) {
+                burstHearts();
+            }
+        }
+
+        function chooseHeart(button) {
+            const hint = document.getElementById("heartHint");
+
+            button.style.transform = "scale(1.5)";
+            hint.textContent = "You found a little piece of my heart... 💗";
+
+            setTimeout(function () {
+                goTo(4);
+            }, 700);
+        }
+
+        function restart() {
+            goTo(1);
+        }
+
+        const heartContainer = document.getElementById("hearts");
+
+        function createHeart() {
+            const heart = document.createElement("span");
+
+            heart.className = "floating-heart";
+
+            const symbols = ["♥", "♡", "💗", "💕", "✨"];
+            heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+            heart.style.left = Math.random() * 100 + "%";
+            heart.style.fontSize = (12 + Math.random() * 22) + "px";
+            heart.style.animationDuration = (7 + Math.random() * 8) + "s";
+
+            heartContainer.appendChild(heart);
+
+            setTimeout(function () {
+                heart.remove();
+            }, 16000);
+        }
+
+        setInterval(createHeart, 500);
+
+        function burstHearts() {
+            for (let i = 0; i < 25; i++) {
+                setTimeout(createHeart, i * 80);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
